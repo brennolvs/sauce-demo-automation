@@ -1,7 +1,7 @@
 # Sauce Demo Automation
 
 Projeto de automação de testes end-to-end com **Playwright + TypeScript** para a aplicação
-[Sauce Demo](https://www.saucedemo.com) ("Swag Labs"), um e-commerce mantido pela Sauce Labs para
+[Sauce Demo](https://www.saucedemo.com) ("Swag Labs"), um e-commerce Labs para
 prática de automação. Complementa o projeto
 [restful-booker-automation](https://github.com/brennolvs/restful-booker-automation), que cobre
 um domínio diferente (reserva de hotel, UI + API).
