@@ -3,8 +3,7 @@
 ## 1. Contexto e objetivo
 
 Este documento descreve o planejamento de testes automatizados de UI para o
-[Sauce Demo](https://www.saucedemo.com) ("Swag Labs"), aplicação de e-commerce mantida pela
-Sauce Labs para prática de automação. O projeto utiliza Playwright + TypeScript e Page Object
+[Sauce Demo](https://www.saucedemo.com) ("Swag Labs"), aplicação de e-commerce para prática de automação. O projeto utiliza Playwright + TypeScript e Page Object
 Model, e complementa o projeto
 [restful-booker-automation](https://github.com/brennolvs/restful-booker-automation), que
 cobre o domínio de reserva de hotel.
@@ -68,8 +67,7 @@ Todos os usuários utilizam a senha `secret_sauce`, divulgada na própria págin
 | UI-07 | Checkout com campo obrigatório vazio exibe mensagem de erro                      | Média      |
 | UI-08 | (Exploratório) Comparar `problem_user` e `standard_user` e registrar diferenças com o template de bug | Baixa |
 
-Os arquivos de teste ficam em `tests/ui/`. Os títulos dos testes incluem o ID do caso
-(por exemplo, `UI-01: ...`), o que permite rastreabilidade no relatório e execução seletiva
+Os arquivos de teste ficam em `tests/ui/`. Os títulos dos testes incluem o ID do caso, o que permite rastreabilidade no relatório e execução seletiva
 com `npx playwright test -g "UI-02"`.
 
 ## 6. Arquitetura dos testes (Page Object Model)
@@ -102,7 +100,7 @@ A senha é obtida de `process.env.PASSWORD`; não há credenciais fixas no códi
 
 ## 8. Critérios de entrada e saída
 
-**Entrada:** ambiente configurado (`.env` preenchido a partir do `.env.example`) e dependências
+**Entrada:** ambiente configurado (`.env` ) e dependências
 instaladas.
 
 **Saída (definição de pronto da v1):** casos de teste da seção 5 implementados e aprovados,
