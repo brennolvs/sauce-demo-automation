@@ -31,6 +31,8 @@ jobs:
         run: npm test
         env:
           CI: true
+          BASE_URL: https://www.saucedemo.com
+          PASSWORD: secret_sauce
 
       - name: Upload HTML report
         if: always()
