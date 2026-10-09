@@ -12,7 +12,8 @@
     "resolveJsonModule": true,
     "paths": {
       "@pages/*": ["./src/pages/*"],
-      "@fixtures/*": ["./src/fixtures/*"]
+      "@fixtures/*": ["./src/fixtures/*"],
+      "@utils/": ["./src/utils/*"]
     }
   },
   "include": ["tests/**/*.ts", "src/**/*.ts", "playwright.config.ts"]
