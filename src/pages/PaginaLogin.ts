@@ -1,4 +1,4 @@
-import { Page, Locator, expect } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 
 export type TiposUsuarios = 
 | 'standard_user' | 'locked_out_user' | 'problem_user' |'performance_glitch_user' | 'error_user' | 'visual_user';
