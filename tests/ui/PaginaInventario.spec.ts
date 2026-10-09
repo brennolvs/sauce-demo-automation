@@ -26,9 +26,32 @@ test.describe('Pagina de Inventario', () => {
             type: 'produtos',
             description: `${quantidade} produto(s): ${escolhidos.join(', ')}`,
         });
-        
+
         await expect(paginaInventario.badgeCarrinho).toHaveText(String(quantidade));
 
-    })
+    }),
+    test('UI-04 - Remover um produto do carrinho restaura o botão "Add to cart"', async ({ page }) => {
+        const paginaLogin = new PaginaLogin(page);
+        const paginaInventario = new PaginaInventario(page);
+
+        await paginaLogin.acessar();
+        await paginaLogin.fazerLogin('standard_user');
+        await expect(page).toHaveURL(/inventory/);
+        await expect(paginaInventario.itens.first()).toBeVisible();
+
+        const total = await paginaInventario.itens.count();
+        const indice = inteiroAleatorio(0, total - 1);
+        const nome = await paginaInventario.nomesProdutos.nth(indice).textContent();
+        test.info().annotations.push({ type: 'produto', description: nome ?? '' });
+
+        await paginaInventario.adicionarProdutoAoCarrinho(indice);
+        await expect(paginaInventario.badgeCarrinho).toHaveText('1');
+
+        await paginaInventario.removerProdutoDoCarrinho(indice);
+
+        await expect(paginaInventario.botaoAdicionar(indice)).toBeVisible();
+        await expect(paginaInventario.botaoRemover(indice)).toHaveCount(0);
+        await expect(paginaInventario.badgeCarrinho).toHaveCount(0);
+    });
 
 });
