@@ -30,28 +30,44 @@ test.describe('Pagina de Inventario', () => {
         await expect(paginaInventario.badgeCarrinho).toHaveText(String(quantidade));
 
     }),
-    test('UI-04 - Remover um produto do carrinho restaura o botão "Add to cart"', async ({ page }) => {
-        const paginaLogin = new PaginaLogin(page);
-        const paginaInventario = new PaginaInventario(page);
+        test('UI-04 - Remover um produto do carrinho restaura o botão "Add to cart"', async ({ page }) => {
+            const paginaLogin = new PaginaLogin(page);
+            const paginaInventario = new PaginaInventario(page);
 
-        await paginaLogin.acessar();
-        await paginaLogin.fazerLogin('standard_user');
-        await expect(page).toHaveURL(/inventory/);
-        await expect(paginaInventario.itens.first()).toBeVisible();
+            await paginaLogin.acessar();
+            await paginaLogin.fazerLogin('standard_user');
+            await expect(page).toHaveURL(/inventory/);
+            await expect(paginaInventario.itens.first()).toBeVisible();
 
-        const total = await paginaInventario.itens.count();
-        const indice = inteiroAleatorio(0, total - 1);
-        const nome = await paginaInventario.nomesProdutos.nth(indice).textContent();
-        test.info().annotations.push({ type: 'produto', description: nome ?? '' });
+            const total = await paginaInventario.itens.count();
+            const indice = inteiroAleatorio(0, total - 1);
+            const nome = await paginaInventario.nomesProdutos.nth(indice).textContent();
+            test.info().annotations.push({ type: 'produto', description: nome ?? '' });
 
-        await paginaInventario.adicionarProdutoAoCarrinho(indice);
-        await expect(paginaInventario.badgeCarrinho).toHaveText('1');
+            await paginaInventario.adicionarProdutoAoCarrinho(indice);
+            await expect(paginaInventario.badgeCarrinho).toHaveText('1');
 
-        await paginaInventario.removerProdutoDoCarrinho(indice);
+            await paginaInventario.removerProdutoDoCarrinho(indice);
 
-        await expect(paginaInventario.botaoAdicionar(indice)).toBeVisible();
-        await expect(paginaInventario.botaoRemover(indice)).toHaveCount(0);
-        await expect(paginaInventario.badgeCarrinho).toHaveCount(0);
-    });
+            await expect(paginaInventario.botaoAdicionar(indice)).toBeVisible();
+            await expect(paginaInventario.botaoRemover(indice)).toHaveCount(0);
+            await expect(paginaInventario.badgeCarrinho).toHaveCount(0);
+        }),
+        test('UI-05 - Ordenar por "Price (low to high)" exibe os produtos na ordem correta', async ({ page }) => {
+            const paginaLogin = new PaginaLogin(page);
+            const paginaInventario = new PaginaInventario(page);
+
+            await paginaLogin.acessar();
+            await paginaLogin.fazerLogin('standard_user');
+            await expect(page).toHaveURL(/inventory/);
+
+            const precosAntes = await paginaInventario.lerPrecos();
+            expect(precosAntes.length).toBeGreaterThan(0);
+            const precosEsperados = [...precosAntes].sort((a, b) => a - b);
+
+            await paginaInventario.selecionaTipoOrdenacao("Price (low to high)");
+
+            await expect.poll(() => paginaInventario.lerPrecos()).toEqual(precosEsperados);
+        });
 
 });
