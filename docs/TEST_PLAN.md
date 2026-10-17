@@ -152,7 +152,7 @@ pipeline de CI verde e relatório HTML disponível como artefato da execução.
 | UI-02 | Implementado | Aprovado         | 2026-10-06 | Local e CI | Verifica a mensagem de erro e que a URL não avança para `/inventory` |
 | UI-03 | Implementado | Aprovado         | 2026-10-09 | Local e CI | Quantidade e produtos sorteados a cada execução (ver 5.1) |
 | UI-04 | Implementado | Aprovado         | 2026-10-09 | Local e CI | Verifica o retorno do botão "Add to cart" após a remoção |
-| UI-05 | Implementado | Aprovado         | 2026-10-17 | Local      | A ordem exibida é comparada com a ordem esperada, calculada a partir dos próprios preços lidos na tela. Validação negativa realizada (a opção "Price (high to low)" faz o teste falhar) |
+| UI-05 | Implementado | Aprovado         | 2026-10-17 | Local e CI | A ordem exibida é comparada com a ordem esperada, calculada a partir dos próprios preços lidos na tela. Validação negativa realizada (a opção "Price (high to low)" faz o teste falhar) |
 | UI-06 | Pendente     | —                | —          | —          | |
 | UI-07 | Pendente     | —                | —          | —          | |
 | UI-08 | Pendente     | —                | —          | —          | |
@@ -165,7 +165,7 @@ pipeline de CI verde e relatório HTML disponível como artefato da execução.
 | Execução | Instalação de dependências, instalação do Chromium, `npm test`, upload do relatório HTML como artefato |
 | Variáveis no CI | `CI`, `BASE_URL` e `PASSWORD` definidas no passo de execução dos testes |
 | Relatório | Disponível como artefato `playwright-report` da execução (retenção de 14 dias) |
-| Última execução | Aprovada (2026-10-09) |
+| Última execução | Aprovada (2026-10-17) |
 
 ### 9.3 Registro de execuções
 
@@ -174,7 +174,7 @@ da mais recente para a mais antiga.
 
 | Data       | Ambiente   | Escopo | Resultado | Notas |
 |------------|------------|--------|-----------|-------|
-| 2026-10-17 | Local      | UI-01 a UI-05 | 5 aprovados | Fase 2 concluída. UI-05 incluído após a implementação da ordenação e da leitura de preços em `PaginaInventario`. A validação negativa confirmou a falha quando a opção de ordenação selecionada é incorreta. |
+| 2026-10-17 | Local e CI | UI-01 a UI-05 | 5 aprovados | Fase 2 concluída. UI-05 incluído após a implementação da ordenação e da leitura de preços em `PaginaInventario`. A validação negativa confirmou a falha quando a opção de ordenação selecionada é incorreta. |
 | 2026-10-09 | Local e CI | UI-01 a UI-04 | 4 aprovados | Primeira execução bem-sucedida da suíte no GitHub Actions. UI-03 e UI-04 incluídos após a implementação de `PaginaInventario`. |
 | 2026-10-06 | Local      | UI-01, UI-02 | 2 aprovados | Fase 1 concluída. Validação negativa do UI-01 com senha inválida confirmou falha no `toHaveURL`. |
 
