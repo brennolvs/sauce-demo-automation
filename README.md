@@ -107,6 +107,10 @@ seção **Artifacts**.
   funções utilitárias em `src/utils/`. O sorteio nunca repete produto, pois o botão de um item
   já adicionado passa a ser "Remove". Os produtos escolhidos são registrados nas anotações do
   relatório para permitir a reprodução de falhas.
+- **Verificação de ordenação:** o UI-05 calcula a ordem esperada a partir dos preços lidos na
+  própria tela, antes de ordenar, em vez de usar uma lista fixa, e utiliza `expect.poll` para
+  aguardar a reordenação. As opções de ordenação são restritas pelo tipo `TiposOrdenacao`, o que
+  evita erros de digitação em tempo de compilação.
 - **Credenciais:** a senha é lida de `process.env.PASSWORD`, sem valores fixos no código.
 
 ## Status de execução
@@ -114,7 +118,7 @@ seção **Artifacts**.
 | Fase | Escopo | Situação |
 |------|--------|----------|
 | 1 | `PaginaLogin` + UI-01 e UI-02 | Concluída |
-| 2 | `PaginaInventario` + UI-03, UI-04 e UI-05 | Em andamento (UI-03 e UI-04 concluídos) |
+| 2 | `PaginaInventario` + UI-03, UI-04 e UI-05 | Concluída |
 | 3 | Checkout: UI-06 e UI-07 | Pendente |
 | 4 | Exploratório com `problem_user` / `visual_user` (UI-08) | Pendente |
 | 5 | Backlog: `error_user`, `performance_glitch_user`, regressão visual | Pendente |
